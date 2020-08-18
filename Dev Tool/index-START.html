@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('hello');
+
+    // Interpolated
+    console.log('Hello I am a %s string!','YESSSSSSS');
+    const add = "RAY";
+    console.log(`Hello I am a ${add} string!`);
+
+
+    // Styled
+    console.log('%c I am some great text','font-size:50px; background:teal; text-shadow: 10px 10px 0 teal')
+    // warning!
+    console.warn('ooops');
+    // Error :|
+    console.error('ooops');
+    // Info
+    console.info('I am handsome');
+    // Testing
+    console.assert(1 ===2,'Wrong'); // check bool(test something, throw error if false)
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    const p = document.querySelector('p');
+    console.log(p);
+    console.dir(p); //open up the class list to see data, styles, methods in proto
+    // Grouping together
+    dogs.forEach(dog=>{
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`This is ${dog.name} is ${dog.age} years old`);
+      console.log(`This is ${dog.name} is ${dog.age*7} dog years old`);
+      console.groupEnd();
+    })
+
+    // counting (how many we counted at that time)
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Ray');
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Wes');
+
+
+    // timing
+    console.time('feching data');
+    fetch('https://api.github.com/users/wesbos')
+    .then(data=>data.json())
+    .then(data => {
+      console.log(data);
+      console.timeEnd('feching data')
+    });
+
+
+    console.table(dogs); //convert array to table
+  </script>
+</body>
+</html>
